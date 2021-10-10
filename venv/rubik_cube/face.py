@@ -39,6 +39,27 @@ class Face:
         for row in self.face:
             print(row)
 
+    def is_monocolored(self) -> bool:
+        face_color = self.face[0][0]
+        for row in self.face:
+            for column in row:
+                if column != face_color:
+                    return False
+        return True
+
+    def rotate_clockwise(self) -> None:
+        temporary_face = self.get_face()
+        for row in range(3):
+            for column in range(3):
+                (self.face)[row][column] = temporary_face.get_row(2 - column)[row]
+
+    def rotate_counterclockwise(self) -> None:
+        temporary_face = self.get_face()
+        for row in range(3):
+            for column in range(3):
+                (self.face)[row][column] = temporary_face.get_row(column)[2 - row]
+
+
 if __name__ == "__main__":
     face = Face(Color.RED)
     copied_face = face.get_face()
