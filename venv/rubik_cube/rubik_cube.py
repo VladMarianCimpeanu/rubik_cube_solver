@@ -96,11 +96,25 @@ class Cube:
             position = random.randint(0,2)
             self.rotate(direction, position)
 
+    def is_feasible(self):
+        quantities = [0, 0, 0, 0, 0, 0]
+        for face in self.faces:
+            face_quantity = face.count_colors()
+            for index in range(6):
+                quantities[index] += face_quantity[index]
+        for item in quantities:
+            if item != 9:
+                return False
+        return True
+
+
+
 if __name__ == "__main__":
     cube = Cube()
     cube.show_cube()
     print("\n")
     cube.shuffle()
     cube.show_cube()
+    print(cube.is_feasible())
 
 

@@ -28,8 +28,10 @@ class Face:
 
     def set_column(self, column_index: int, blocks: list) -> list:
         old_column = self.get_column(column_index)
+        index = 0
         for row in self.face:
-            row[column_index] = blocks[column_index]
+            row[column_index] = blocks[index]
+            index += 1
         return old_column
 
     def get_face(self):
@@ -59,10 +61,24 @@ class Face:
             for column in range(3):
                 (self.face)[row][column] = temporary_face.get_row(column)[2 - row]
 
+    def count_colors(self):
+        result = []
+        for color in Color:
+            quantity = 0
+            for row in self.face:
+                quantity += row.count(color.name)
+            result.append(quantity)
+        return result
 
 if __name__ == "__main__":
     face = Face(Color.RED)
-    copied_face = face.get_face()
-    copied_face.set_row(0, [Color.BLUE.name for item in range(3)])
+    face.set_row(0, [Color.BLUE.name, Color.YELLOW.name, Color.WHITE.name])
+    face.set_row(1, [Color.RED.name, Color.WHITE.name, Color.ORANGE.name])
+    face.set_row(2, [Color.ORANGE.name, Color.GREEN.name, Color.RED.name])
     face.print_face()
-    copied_face.print_face()
+    print("\n")
+    face.set_column(2, [Color.BLUE.name, Color.WHITE.name, Color.GREEN.name])
+    face.print_face()
+    face.rotate_counterclockwise()
+    print("\n")
+    face.print_face()
