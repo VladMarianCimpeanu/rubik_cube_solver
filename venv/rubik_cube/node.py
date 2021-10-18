@@ -14,7 +14,7 @@ class Node:
         for dir in Direction:
             for pos in range(3):
                 """it is avoiding to generate a child containing the same cube of its parent node."""
-                if not ((self.obtained_from is None or dir.value == -self.obtained_from.value)
+                if not ((self.obtained_from is None or dir.is_opposite(self.obtained_from))
                         and pos == self.positon_from):
                     new_cube = self.cube.copy_cube()
                     new_cube.rotate(dir, pos)
