@@ -81,7 +81,7 @@ class Cube:
         return self.faces[face].get_face()
 
     def copy_cube(self) -> list:
-        return [face.get_face() for face in self.faces]
+        return Cube([face.get_face() for face in self.faces])
 
     def is_solved(self) -> bool:
         for face in self.faces:
