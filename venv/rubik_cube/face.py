@@ -14,9 +14,11 @@ class Face:
             for item in args[0]:
                 self.face.append(item)
 
+    """it returns the ith row of the face"""
     def get_row(self, row: int) -> list:
         return self.face[row].copy()
 
+    """it returns the ith column of the face"""
     def get_column(self, column: int) -> list:
         return [blocks[column] for blocks in self.face].copy()
 
